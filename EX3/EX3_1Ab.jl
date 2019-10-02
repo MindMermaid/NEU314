@@ -26,5 +26,7 @@ function image_RGB(filename::AbstractString)
     G = img[:,:,2];
     B = img[:,:,3];
 
+    println("Reset with git reset --mixed");
+
     return R, G, B
 end
