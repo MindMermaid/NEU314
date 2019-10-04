@@ -1,21 +1,40 @@
-##===== Preparation
-img = imread("eye.png");
-figure(1)
-imshow(img);
-##=====
-
 ##=====Circular Rotation Function
 
 """
-pixel_circulate(arg1, arg2) -- circulates specified number of rows of pixels in an image
-Reads an image file, shifts specified rows of an image and returns shifted image
+circulate_pixels_R(arg1, arg2) -- circulates red channel of an image
+Reads an image file, shifts specified rows (p) of red channel in image and returns shifted image
 
 Args:
    arg1 (str): filename
-   arge2 (int): p -- number of pixels by which to shift p rows
+   arge2 (int): p -- number of pixels by which to shift p rows of the red channel
 
 Returns:
-   out (image): returns 3 arrays containing the R, G & B values of every image pixel
+   out (image): returns shifted image
 """
 
-function pixel_circulate(filename, p)
+function circulate_pixels_R(filename, p)
+    
+       img = imread(filename);
+    
+    img_top = img[1:p+1,:,1];
+    img_bottom = img[p+1:end,:,1];
+    
+    img[1:end-p,:,1] = img_bottom;
+    img[end-p:end,:,1] = img_top;  
+    
+    return imshow(img)
+end
+
+img = imread("el-capitan.png")
+
+
+fig = figure(figsize=(10,4))
+suptitle("Circulate R-channel");
+    subplot(121)
+        imshow(img)
+        title("Original")
+        axis("off")
+    subplot(122)
+        circulate_pixels_R("el-capitan.png",180)
+        title("Shifted R-channel")
+        axis("off")
