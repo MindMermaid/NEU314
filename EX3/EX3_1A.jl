@@ -1,7 +1,3 @@
-# Orientation
-cd("NEU314\\EX3");
-include("standard_start.jl");
-
 # Preparation
 img = imread("el-capitan.png");
 figure(1)
@@ -19,7 +15,7 @@ Returns:
    out (int): returns 3 arrays containing the R, G & B values of every image pixel
 """
 
-function image_RGB(filename::AbstractString)
+function image_RGB(filename)
 
     img = imread(filename);
     R = img[:,:,1];
@@ -42,7 +38,7 @@ image5 = cat(image1[2], image1[1], image1[1]; dims=3);
 #RBG
 image6 = cat(image1[1], image1[3], image1[2]; dims=3);
 ##===== Create a figure to display swapped RGB values
-fig = figure("Flip RGB",figsize=(10,4))
+fig = figure(figsize=(10,4))
     suptitle("RGB Value Swaps")
         subplot(231)
             imshow(img);
