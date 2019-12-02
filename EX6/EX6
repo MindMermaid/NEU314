@@ -1,0 +1,7 @@
+using JLD
+X = load("Ex6datafile.jld")["X"];
+
+using PyPlot
+scatter(X[1,:], X[2,:])
+xlabel("Neuron 1 firing rate")
+ylabel("Neuron 2 firing rate")
